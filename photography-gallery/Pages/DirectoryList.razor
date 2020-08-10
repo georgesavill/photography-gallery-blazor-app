@@ -57,6 +57,12 @@
                     <div class="card-img"></div>
                 </div>
             </div>
+            <div class="modal-footer">
+                @if (selectedImage != null)
+                {
+                    <a href="@selectedImage.RelativePath" target="_blank">view full-size image</a>
+                }
+                </div>
         </div>
     </div>
 </div>
