@@ -1,0 +1,88 @@
+﻿@using photography_gallery.Services
+@using Microsoft.AspNetCore.Components.Web
+@inject ImageListService ListService
+@using photography_gallery.Models;
+@if (currentDirectory != "")
+{
+    <button @onclick="(e => GoBack())" class="btn btn-outline-secondary">back</button>
+}
+<br />
+<br />
+<div class="text-center">
+    <div class="card-columns">
+        @foreach (ListEntry directory in ListService.GetDirectoryList(currentDirectory))
+        {
+            <div class="card btn btn-outline-primary" style="cursor:pointer" @onclick="(e => ChangeDirectory(directory.FullPath))">
+                <div class="card-body">
+                    <h5>@directory.DisplayName</h5>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="card-columns">
+        @foreach (ListEntry directory in ListService.GetFileList(currentDirectory))
+        {
+            <div @onclick="(e => SelectImage(directory))" class="card" style="cursor:pointer" data-toggle="modal" data-target="#imagePreviewModal">
+                <div class="card-body">
+                    <img src="@directory.ThumbnailPath" style="width:100%" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" role="dialog" aria-labelledby="imagePreviewTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imagePreviewTitle">@if (selectedImage != null)
+                {@selectedImage.DisplayName}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    @if (selectedImage != null)
+                    {
+                        <img class="card-img" src="@selectedImage.PreviewPath" />
+                    }
+                    else
+                    {
+                        <div class="card-img"></div>
+                    }
+                    <div class="card-img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    string currentDirectory = "";
+    ListEntry selectedImage;
+
+    void ChangeDirectory(string requestedDirectory)
+    {
+        if (requestedDirectory.Split(".").Last() == "jpg")
+        {
+            // Open modal?
+            return;
+        }
+        else
+        {
+            currentDirectory = requestedDirectory.Split("/images").Last();
+        }
+    }
+    void GoBack()
+    {
+        string[] splitDirectory = currentDirectory.Split("/");
+        Array.Resize(ref splitDirectory, splitDirectory.Length - 1);
+        currentDirectory = string.Join("/", splitDirectory);
+    }
+
+    void SelectImage(ListEntry clickedImage)
+    {
+        selectedImage = clickedImage;
+    }
+}
