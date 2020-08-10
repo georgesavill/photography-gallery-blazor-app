@@ -1,11 +1,24 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand">Photography Gallery</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @Body
+        </main>
     </div>
 
-    <div class="content px-4">
-        @Body
-    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - George Savill
+        </div>
+    </footer>
 </div>
