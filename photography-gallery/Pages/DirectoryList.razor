@@ -8,6 +8,9 @@
 @using Microsoft.AspNetCore.Components.Web;
 @using photography_gallery.Models;
 @inject ImageListService ListService
+@inject IJSRuntime JSRuntime;
+@implements IDisposable
+@inject NavigationManager NavigationManager
 
 <div class="text-center">
     <div class="card-columns">
@@ -62,7 +65,7 @@
                 {
                     <a href="@selectedImage.RelativePath" target="_blank">view full-size image</a>
                 }
-                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -76,5 +79,20 @@
     void SelectImage(ListEntry clickedImage)
     {
         selectedImage = clickedImage;
+    }
+
+    // Close modal on navigation event
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+    }
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        JSRuntime.InvokeAsync<string>("closeModal");
+    }
+    void IDisposable.Dispose()
+    {
+        NavigationManager.LocationChanged -= LocationChanged;
     }
 }
