@@ -22,6 +22,7 @@ namespace photography_gallery.Services
             List<ListEntry> returnedDirectoryList = new List<ListEntry>();
             string rootDirectory = Path.Combine(WebHostEnvironment.WebRootPath, "images") + subDirectory;
             string[] directoryList = Directory.GetDirectories(rootDirectory, "*.*", SearchOption.TopDirectoryOnly);
+            Array.Sort(directoryList);
             foreach (string entry in directoryList)
             {
                 returnedDirectoryList.Add(CreateListEntry(entry, "dir"));
@@ -33,6 +34,7 @@ namespace photography_gallery.Services
             List<ListEntry> returnedFileList = new List<ListEntry>();
             string rootDirectory = Path.Combine(WebHostEnvironment.WebRootPath, "images") + subDirectory;
             string[] fileList = Directory.GetFiles(rootDirectory, "*.jpg", SearchOption.TopDirectoryOnly);
+            Array.Sort(fileList);
             foreach (string entry in fileList)
             {
                 if (entry.IndexOf("_preview.") == -1 && entry.IndexOf("_thumbnail.") == -1)
