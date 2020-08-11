@@ -91,3 +91,8 @@ body {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+/* Hide server connection messages */
+.components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected {
+    display: none;
+}
