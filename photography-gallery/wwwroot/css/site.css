@@ -96,16 +96,3 @@ body {
 .components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected {
     display: none;
 }
-
-.masonry {
-    display: flex;
-    flex-flow: row wrap;
-    margin-left: -8px; /* Adjustment for the gutter */
-    width: 100%;
-}
-
-.masonry-brick {
-    flex: auto;
-    min-width: 150px;
-    margin: 0 8px 8px 0; /* Some gutter */
-}

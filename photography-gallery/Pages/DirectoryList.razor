@@ -13,10 +13,10 @@
 @inject NavigationManager NavigationManager
 
 <div class="text-center">
-    <div class="masonry">
+    <div class="card-columns">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + RequestedDirectory))
         {
-            <a class="masonry-brick card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="/@directory.DisplayName">
+            <a class="card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="/@directory.DisplayName">
                 <div class="card-body">
                     <h5>@directory.DisplayName</h5>
                 </div>
@@ -26,7 +26,7 @@
     <div class="card-columns">
         @foreach (ListEntry directory in ListService.GetFileList("/" + RequestedDirectory))
         {
-            <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer" data-toggle="modal" data-target="#imagePreviewModal"/>
+            <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal"/>
         }
     </div>
 </div>
