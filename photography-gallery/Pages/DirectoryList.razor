@@ -13,10 +13,10 @@
 @inject NavigationManager NavigationManager
 
 <div class="text-center">
-    <div class="card-columns">
+    <div class="masonry">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + RequestedDirectory))
         {
-            <a class="card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="/@directory.DisplayName">
+            <a class="masonry-brick card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="/@directory.DisplayName">
                 <div class="card-body">
                     <h5>@directory.DisplayName</h5>
                 </div>
