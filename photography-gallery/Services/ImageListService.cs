@@ -48,12 +48,13 @@ namespace photography_gallery.Services
         static ListEntry CreateListEntry(string entry, string type)
         {
             string relativePath = entry.Split("wwwroot").Last();
+            string routablePath = relativePath.Split("images/").Last();
             string fileName = relativePath.Split(".").First();
             string fileExtension = relativePath.Split(".").Last();
             string thumnailPath = fileName + "_thumbnail." + fileExtension;
             string previewPath = fileName + "_preview." + fileExtension;
 
-            return new ListEntry(entry, relativePath, thumnailPath, previewPath, entry.Split("/").Last(), type);
+            return new ListEntry(entry, relativePath, routablePath, thumnailPath, previewPath, entry.Split("/").Last(), type);
         }
     }
 }

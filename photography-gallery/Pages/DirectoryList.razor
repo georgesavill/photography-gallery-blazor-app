@@ -14,9 +14,9 @@
 
 <div class="text-center">
     <div class="card-columns">
-        @foreach (ListEntry directory in ListService.GetDirectoryList("/" + RequestedDirectory))
+        @foreach (ListEntry directory in ListService.GetDirectoryList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <a class="card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="/@directory.DisplayName">
+            <a class="card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="@directory.RoutablePath">
                 <div class="card-body">
                     <h5>@directory.DisplayName</h5>
                 </div>
@@ -24,7 +24,7 @@
         }
     </div>
     <div class="card-columns">
-        @foreach (ListEntry directory in ListService.GetFileList("/" + RequestedDirectory))
+        @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
             <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal"/>
         }
