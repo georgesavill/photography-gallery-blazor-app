@@ -7,10 +7,16 @@
 @using photography_gallery.Services;
 @using Microsoft.AspNetCore.Components.Web;
 @using photography_gallery.Models;
+@using StackExchange.Redis;
 @inject ImageListService ListService
 @inject IJSRuntime JSRuntime;
 @implements IDisposable
 @inject NavigationManager NavigationManager
+
+@{
+    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.1.179:6379,allowAdmin=true");
+    IDatabase redisDatabase = redis.GetDatabase(9);
+}
 
 <div class="text-center">
     <div class="card-columns">
@@ -26,7 +32,7 @@
     <div class="card-columns">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal"/>
+            <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal" />
         }
     </div>
 </div>
@@ -44,14 +50,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                    @if (selectedImage != null)
-                    {
-                        <img class="card-img" src="@selectedImage.PreviewPath" />
-                    }
+                @if (selectedImage != null)
+                {
+                    <img class="card-img" src="@selectedImage.PreviewPath" />
+                }
             </div>
             <div class="modal-footer">
                 @if (selectedImage != null)
                 {
+                    <h2>@redisDatabase.HashGet(selectedImage.DisplayName, "Model")</h2>
+                    <h2>@redisDatabase.HashGet(selectedImage.DisplayName, "LensModel")</h2>
+                    <h2>@redisDatabase.HashGet(selectedImage.DisplayName, "FNumber")</h2>
+                    <h2>@redisDatabase.HashGet(selectedImage.DisplayName, "FocalLength")</h2>
+                    <h2>@redisDatabase.HashGet(selectedImage.DisplayName, "ExposureTime")</h2>
                     <a class="w-100 text-center" href="@selectedImage.RelativePath" target="_blank" download>download full-size image</a>
                 }
             </div>
