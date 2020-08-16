@@ -96,3 +96,11 @@ body {
 .components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected {
     display: none;
 }
+
+#metadata {
+    margin-top:20px;
+}
+
+#download-link {
+    float:right;
+}
