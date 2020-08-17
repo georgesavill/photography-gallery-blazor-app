@@ -17,6 +17,18 @@ namespace photography_gallery.Services
 
         public IWebHostEnvironment WebHostEnvironment { get; }
 
+        public bool DirectoryExists(string requestedDirectory)
+        {
+            string pathToCheck = Path.Combine(WebHostEnvironment.WebRootPath, "images/") + System.Net.WebUtility.UrlDecode(requestedDirectory);
+
+            if (Directory.Exists(pathToCheck))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
         public List<ListEntry> GetDirectoryList(string subDirectory)
         {
             List<ListEntry> returnedDirectoryList = new List<ListEntry>();

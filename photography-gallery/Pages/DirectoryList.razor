@@ -4,6 +4,9 @@
     [Parameter]
     public string RequestedDirectory { get; set; }
 }
+@using System;
+@using System.IO;
+@using System.Collections;
 @using photography_gallery.Services;
 @using Microsoft.AspNetCore.Components.Web;
 @using photography_gallery.Models;
@@ -14,6 +17,11 @@
 @inject NavigationManager NavigationManager
 
 @{
+    if (!ListService.DirectoryExists(RequestedDirectory))
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
     ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.1.179:6379,allowAdmin=true");
     IDatabase redisDatabase = redis.GetDatabase(9);
 }
@@ -44,7 +52,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                </div>
+            </div>
             <div class="modal-body">
                 @if (selectedImage != null)
                 {
@@ -54,39 +62,39 @@
             <div class="modal-footer">
                 @if (selectedImage != null)
                 {
-                <div class="flex-fill">
-                    <button class="btn btn-outline-secondary shadow-sm" data-toggle="collapse" data-target="#metadata">toggle metadata</button>
+                    <div class="flex-fill">
+                        <button class="btn btn-outline-secondary shadow-sm" data-toggle="collapse" data-target="#metadata">toggle metadata</button>
 
-                    <a id="download-link" class="btn btn-outline-secondary shadow-sm" href="@selectedImage.RelativePath" target="_blank" download>download full-size image</a>
+                        <a id="download-link" class="btn btn-outline-secondary shadow-sm" href="@selectedImage.RelativePath" target="_blank" download>download full-size image</a>
 
-                    <div id="metadata" class="collapse">
-                        <table class="table">
-                            <tr>
-                                <th scope="row">Camera</th>
-                                <td>@redisDatabase.HashGet(selectedImage.DisplayName, "Model")</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Lens</th>
-                                <td>@redisDatabase.HashGet(selectedImage.DisplayName, "LensModel")</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">F-stop</th>
-                                <td>@redisDatabase.HashGet(selectedImage.DisplayName, "FNumber")</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Focal length</th>
-                                <td>@redisDatabase.HashGet(selectedImage.DisplayName, "FocalLength")</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Shutter speed</th>
-                                <td>@redisDatabase.HashGet(selectedImage.DisplayName, "ExposureTime")</td>
-                            </tr>
-                        </table>
+                        <div id="metadata" class="collapse">
+                            <table class="table">
+                                <tr>
+                                    <th scope="row">Camera</th>
+                                    <td>@redisDatabase.HashGet(selectedImage.DisplayName, "Model")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Lens</th>
+                                    <td>@redisDatabase.HashGet(selectedImage.DisplayName, "LensModel")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">F-stop</th>
+                                    <td>@redisDatabase.HashGet(selectedImage.DisplayName, "FNumber")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Focal length</th>
+                                    <td>@redisDatabase.HashGet(selectedImage.DisplayName, "FocalLength")</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Shutter speed</th>
+                                    <td>@redisDatabase.HashGet(selectedImage.DisplayName, "ExposureTime")</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                    }
-                </div>
-                </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 @{
