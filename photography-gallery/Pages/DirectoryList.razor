@@ -22,7 +22,7 @@
         NavigationManager.NavigateTo("/");
     }
 
-    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.1.179:6379,allowAdmin=true");
+    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.1.179:6379");
     IDatabase redisDatabase = redis.GetDatabase(9);
 }
 
