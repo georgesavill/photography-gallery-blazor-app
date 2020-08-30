@@ -40,7 +40,7 @@
     <div class="card-columns">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal" />
+            <img srcset="@directory.ThumbnailPath, @directory.PreviewPath 2x"  src="@directory.ThumbnailPath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal" />
         }
     </div>
 </div>
