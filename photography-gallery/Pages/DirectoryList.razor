@@ -56,7 +56,7 @@
             <div class="modal-body">
                 @if (selectedImage != null)
                 {
-                    <img class="card-img" src="@selectedImage.LargeImagePath" />
+                    <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath"  class="card-img"/>
                 }
             </div>
             <div class="modal-footer">
