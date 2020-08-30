@@ -20,8 +20,8 @@ namespace photography_gallery.Models
             this.fullPath = fullPath;
             this.relativePath = relativePath;
             this.routablePath = System.Net.WebUtility.UrlEncode(routablePath);
-            this.thumbnailPath = thumbnailPath;
-            this.previewPath = previewPath;
+            this.thumbnailPath = thumbnailPath.Replace(" ", "%20");
+            this.previewPath = previewPath.Replace(" ", "%20");
             this.displayName = displayName;
             this.type = type;
         }
