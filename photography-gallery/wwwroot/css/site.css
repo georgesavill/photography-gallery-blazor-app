@@ -1,33 +1,49 @@
-* {
-    box-sizing: border-box;
+@font-face {
+    font-family: "Quicksand";
+    src: url("../fonts/quicksand.woff2") format('woff2');
+    font-display: block;
 }
 
+* {
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand";
+    font-weight: 300;
+    color: #fff;
+}
 html {
     position: relative;
     min-height: 100%;
 }
 
 body {
+    background-color: #24292e;
     margin: 40px 0;
 }
 
 .footer, .header {
+    background: #24292e;
     position: fixed;
     width: 100%;
     line-height: 40px;
-    background: #fff;
     padding: 0 20px;
     z-index: 10;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
 
 .footer {
-    border-top: 1px solid #e5e5e5;
+    font-size: .75rem;
     bottom: 0;
 }
 
 .header {
-    border-bottom: 1px solid #e5e5e5;
     top: 0;
+}
+
+.header a {
+    text-decoration: none;
 }
 
 #blazor-error-ui {
