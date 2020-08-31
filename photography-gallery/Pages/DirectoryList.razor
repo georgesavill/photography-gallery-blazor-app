@@ -13,7 +13,7 @@
 @using StackExchange.Redis;
 @inject ImageListService ListService
 @inject IJSRuntime JSRuntime;
-@*@implements IDisposable*@
+@implements IDisposable
 @inject NavigationManager NavigationManager
 
 @{
@@ -40,15 +40,15 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => SelectImage(directory))" />
+            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => OpenModal(directory))" />
         }
     </div>
 </div>
 
-<div id="imagePreviewModal" class="modal" >
+<div id="imagePreviewModal" class="modal">
     <div class="modal-content">
         <div class="modal-body">
-            <div class="model-close-btn">✕</div>
+            <div id="imagePreviewModalCloseBtn" class="model-close-btn" @onclick="CloseModal">✕</div>
             @if (selectedImage != null)
             {
                 <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath" />
@@ -98,23 +98,29 @@
 @code {
     ListEntry selectedImage;
 
-    void SelectImage(ListEntry clickedImage)
+    void OpenModal(ListEntry clickedImage)
     {
         selectedImage = clickedImage;
+        JSRuntime.InvokeAsync<string>("openModal");
+    }
+    void CloseModal()
+    {
+        selectedImage = null;
+        JSRuntime.InvokeAsync<string>("closeModal");
     }
 
-    // Close modal on navigation event
-    //protected override void OnInitialized()
-    //{
-    //    NavigationManager.LocationChanged += LocationChanged;
-    //    base.OnInitialized();
-    //}
-    //void LocationChanged(object sender, LocationChangedEventArgs e)
-    //{
-    //    JSRuntime.InvokeAsync<string>("closeModal");
-    //}
-    //void IDisposable.Dispose()
-    //{
-    //    NavigationManager.LocationChanged -= LocationChanged;
-    //}
+    //Close modal on navigation event
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+    }
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        CloseModal();
+    }
+    void IDisposable.Dispose()
+    {
+        NavigationManager.LocationChanged -= LocationChanged;
+    }
 }
