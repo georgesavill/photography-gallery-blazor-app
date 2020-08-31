@@ -30,10 +30,8 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <a style="cursor:pointer" href="@directory.RoutablePath">
-                <div>
-                    <h5>@directory.DisplayName</h5>
-                </div>
+            <a class="text-card" href="@directory.RoutablePath">
+                <h4>@directory.DisplayName</h4>
             </a>
         }
     </div>
