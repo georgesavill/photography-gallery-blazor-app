@@ -8,13 +8,13 @@ html {
 }
 
 body {
-    margin: 60px 0;
+    margin: 40px 0;
 }
 
 .footer, .header {
     position: fixed;
     width: 100%;
-    line-height: 60px;
+    line-height: 40px;
     background: #fff;
     padding: 0 20px;
 }
@@ -67,6 +67,30 @@ body {
     .list {
         column-count: 2;
         max-width: 805px;
+    }
+}
+@media (min-width: 830px) {
+    .list {
+        column-count: 3;
+        max-width: 1210px;
+    }
+}
+@media (min-width: 1237px) {
+    .list {
+        column-count: 4;
+        max-width: 1615px;
+    }
+}
+@media (min-width: 1645px) {
+    .list {
+        column-count: 5;
+        max-width: 2020px;
+    }
+}
+@media (min-width: 2047px) {
+    .list {
+        column-count: 6;
+        max-width: 2425px;
     }
 }
 
