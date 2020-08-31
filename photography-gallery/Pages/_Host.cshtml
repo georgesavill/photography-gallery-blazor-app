@@ -29,10 +29,14 @@
 
 
     <base href="~/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <script>
-        window.closeModal = () => { $("#imagePreviewModal").modal("hide") };
+        window.openModal = () => {
+            document.getElementById("imagePreviewModal").style.display = "block";
+        };
+        window.closeModal = () => {
+            document.getElementById("imagePreviewModal").style.display = "none";
+        };
     </script>
 
 </head>
@@ -55,8 +59,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
