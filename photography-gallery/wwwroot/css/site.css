@@ -8,11 +8,13 @@ body {
 }
 
 .footer {
-    position: absolute;
+    border-top: 1px solid #e5e5e5;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    white-space: nowrap;
     line-height: 60px;
+    background: #fff;
+    padding: 0 20px;
 }
 
 #blazor-error-ui {
