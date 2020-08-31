@@ -56,28 +56,26 @@ body {
 
 .list {
     justify-content: center;
-    column-gap: 1.25rem;
+    column-gap: 5px;
     orphans: 1;
     widows: 1;
     column-count: 1;
-    max-width: 367px;
+    max-width: 400px;
     margin: 0 auto;
 }
-    /*.list { FOR LARGER SCREENS
-    justify-content: center;
-    column-gap: 1.25rem;
-    orphans: 1;
-    widows: 1;
-    column-count: 3;
-    width:1091px;
-}*/
+@media (min-width: 427px) {
+    .list {
+        column-count: 2;
+        max-width: 805px;
+    }
+}
 
 .list img {
-    padding: 0 5px;
     width: 100%;
     height: auto;
 }
 
 .list-container {
+    padding:5px;
     text-align: center;
 }
