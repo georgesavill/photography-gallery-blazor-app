@@ -30,8 +30,8 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <a class="card" style="cursor:pointer" href="@directory.RoutablePath">
-                <div class="card-body">
+            <a style="cursor:pointer" href="@directory.RoutablePath">
+                <div>
                     <h5>@directory.DisplayName</h5>
                 </div>
             </a>
@@ -40,7 +40,7 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => SelectImage(directory))" class="card" />
+            <img srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => SelectImage(directory))" />
         }
     </div>
 </div>
