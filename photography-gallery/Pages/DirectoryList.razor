@@ -110,17 +110,17 @@
     }
 
     // Close modal on navigation event
-    protected override void OnInitialized()
-    {
-        NavigationManager.LocationChanged += LocationChanged;
-        base.OnInitialized();
-    }
-    void LocationChanged(object sender, LocationChangedEventArgs e)
-    {
-        JSRuntime.InvokeAsync<string>("closeModal");
-    }
-    void IDisposable.Dispose()
-    {
-        NavigationManager.LocationChanged -= LocationChanged;
-    }
+    //protected override void OnInitialized()
+    //{
+    //    NavigationManager.LocationChanged += LocationChanged;
+    //    base.OnInitialized();
+    //}
+    //void LocationChanged(object sender, LocationChangedEventArgs e)
+    //{
+    //    JSRuntime.InvokeAsync<string>("closeModal");
+    //}
+    //void IDisposable.Dispose()
+    //{
+    //    NavigationManager.LocationChanged -= LocationChanged;
+    //}
 }
