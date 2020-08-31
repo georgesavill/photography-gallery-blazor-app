@@ -26,8 +26,8 @@
     IDatabase redisDatabase = redis.GetDatabase(9);
 }
 
-<div class="text-center">
-    <div class="card-columns">
+<div class="list-container">
+    <div class="list">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
             <a class="card btn btn-outline-primary shadow-sm" style="cursor:pointer" href="@directory.RoutablePath">
@@ -37,10 +37,10 @@
             </a>
         }
     </div>
-    <div class="card-columns">
+    <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" style="cursor:pointer; width:100%" data-toggle="modal" data-target="#imagePreviewModal" />
+            <img srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => SelectImage(directory))" class="card shadow-sm w-100" data-toggle="modal" data-target="#imagePreviewModal" />
         }
     </div>
 </div>
