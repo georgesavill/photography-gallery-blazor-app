@@ -192,7 +192,10 @@ a {
     .modal-content {
         max-width: 100%;
     }
+
     .model-close-btn {
+        top: 15px;
+        right: 15px;
         height: 40px;
         width: 40px;
         line-height: 40px;
