@@ -88,7 +88,7 @@ a {
     orphans: 1;
     widows: 1;
     column-count: 2;
-    max-width: 400px;
+    max-width: 805px;
     margin: 0 auto;
 }
 .text-list {
@@ -169,13 +169,6 @@ a {
     background: rgba(200,200,200,0.8);
 }
 
-@media (min-width: 450px) {
-    .list {
-        column-count: 2;
-        max-width: 805px;
-    }
-}
-
 @media (max-width:650px) {
     .list {
         column-gap: 5px;
@@ -196,6 +189,7 @@ a {
     .model-close-btn {
         width: 80px;
     }
+
 }
 
 @media (min-width: 850px) {
