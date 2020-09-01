@@ -190,6 +190,10 @@ a {
         width: 80px;
     }
 
+    .img-card:hover, .img-card:active { /* TODO: Apply this for all touch devices - not based on screen size.*/ 
+        filter: none;
+        transform: none;
+    }
 }
 
 @media (min-width: 850px) {
