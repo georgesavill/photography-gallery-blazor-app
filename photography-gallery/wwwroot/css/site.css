@@ -43,6 +43,7 @@ a {
 
 .header {
     top: 0;
+    margin: -1px 0 0;
 }
 
 .header a h1 {
