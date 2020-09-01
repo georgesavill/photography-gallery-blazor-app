@@ -50,7 +50,7 @@
 <div id="imagePreviewModal" class="modal">
     <div class="modal-content">
         <div class="modal-body">
-            <div id="imagePreviewModalCloseBtn" class="model-close-btn" @onclick="CloseModal">✕</div>
+            <div id="imagePreviewModalCloseBtn" @onclick="CloseModal"><div class="model-close-btn">✕</div></div>
             @if (selectedImage != null)
             {
                 <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath" />
