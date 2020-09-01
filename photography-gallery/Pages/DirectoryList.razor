@@ -31,7 +31,7 @@
 }
 
 <div class="list-container">
-    <div class="list">
+    <div class="text-list list">
         @foreach (ListEntry directory in ListService.GetDirectoryList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
             <a class="text-card" href="@directory.RoutablePath">
@@ -60,7 +60,7 @@
             @if (selectedImage != null)
             {
                 <div class="flex-fill">
-                    <button id="metadata-btn" class="btn">toggle metadata</button>
+                    <div id="metadata-btn" class="btn">toggle metadata</div>
 
                     <a id="download-btn" class="btn" href="@selectedImage.RelativePath" target="_blank" download>download full-size image</a>
 
