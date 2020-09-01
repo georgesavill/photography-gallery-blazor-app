@@ -6,6 +6,8 @@
 
 * {
     user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -157,7 +159,7 @@ a {
     width: 30px;
     line-height: 30px;
     background: rgba(255,255,255,0.6);
-    color:#000
+    color: #000;
 }
 .model-close-btn:hover {
     background: rgba(255,255,255,0.8);
