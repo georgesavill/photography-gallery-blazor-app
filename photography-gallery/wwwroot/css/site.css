@@ -112,15 +112,6 @@ a {
     margin: 5px 0 0;
     box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 }
-.img-card:hover {
-    filter: brightness(110%);
-    transform: scale(1.015);
-}
-.img-card:active {
-    filter: brightness(90%);
-    transform: scale(1);
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -167,12 +158,25 @@ a {
     background: rgba(255,255,255,0.6);
     color: #000;
 }
-.model-close-btn:hover {
-    background: rgba(255,255,255,0.8);
-}
 
-.model-close-btn:active {
-    background: rgba(200,200,200,0.8);
+@media (hover: hover) {
+    .img-card:hover {
+        filter: brightness(110%);
+        transform: scale(1.015);
+    }
+
+    .img-card:active {
+        filter: brightness(90%);
+        transform: scale(1);
+    }
+
+    .model-close-btn:hover {
+        background: rgba(255,255,255,0.8);
+    }
+
+    .model-close-btn:active {
+        background: rgba(200,200,200,0.8);
+    }
 }
 
 @media (max-width:650px) {
@@ -194,11 +198,6 @@ a {
 
     .model-close-btn {
         width: 80px;
-    }
-
-    .img-card:hover, .img-card:active { /* TODO: Apply this for all touch devices - not based on screen size.*/ 
-        filter: none;
-        transform: none;
     }
 }
 
