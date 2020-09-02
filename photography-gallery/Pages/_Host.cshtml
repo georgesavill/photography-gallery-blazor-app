@@ -33,9 +33,11 @@
     <script>
         window.openModal = () => {
             document.getElementById("imagePreviewModal").style.display = "block";
+            document.getElementsByTagName("BODY")[0].style.position = "fixed"
         };
         window.closeModal = () => {
             document.getElementById("imagePreviewModal").style.display = "none";
+            document.getElementsByTagName("BODY")[0].style.position = "unset"
         };
     </script>
 
