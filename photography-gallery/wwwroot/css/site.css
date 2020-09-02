@@ -146,7 +146,7 @@ a {
     top: 0px;
     right: 0px;
     height: 50px;
-    width: 100px;
+    width: 50px;
 }
 
 .model-close-btn {
@@ -194,6 +194,10 @@ a {
 
     .modal-content {
         max-width: 100%;
+    }
+
+    #imagePreviewModalCloseBtn {
+        width: 100px;
     }
 
     .model-close-btn {
