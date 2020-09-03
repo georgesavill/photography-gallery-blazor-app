@@ -10,7 +10,7 @@
 @using photography_gallery.Services;
 @using Microsoft.AspNetCore.Components.Web;
 @using photography_gallery.Models;
-@*@using StackExchange.Redis;*@
+@using StackExchange.Redis;
 @inject ImageListService ListService
 @inject IJSRuntime JSRuntime;
 @implements IDisposable
@@ -21,13 +21,13 @@
     {
         NavigationManager.NavigateTo("/");
     }
-    //ConfigurationOptions redisOptions = new ConfigurationOptions
-    //{
-    //    AbortOnConnectFail = false,
-    //    EndPoints = { "192.168.1.179:6379" }
-    //};
-    //ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisOptions);
-    //IDatabase redisDatabase = redis.GetDatabase(9);
+    ConfigurationOptions redisOptions = new ConfigurationOptions
+    {
+        AbortOnConnectFail = false,
+        EndPoints = { "192.168.1.179:6379" }
+    };
+    ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisOptions);
+    IDatabase redisDatabase = redis.GetDatabase(9);
 }
 
 <div class="list-container">
@@ -42,7 +42,7 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" @onclick="(e => OpenModal(directory))" />
+            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" width="400" height="@(400 * float.Parse(redisDatabase.HashGet(directory.DisplayName, "AspectRatio").ToString()))" @onclick="(e => OpenModal(directory))" />
         }
     </div>
 </div>
