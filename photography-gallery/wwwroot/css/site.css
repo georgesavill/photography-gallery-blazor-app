@@ -233,7 +233,3 @@ a {
         max-width: 2425px;
     }
 }
-
-::-webkit-scrollbar {
-    display: none;
-}
