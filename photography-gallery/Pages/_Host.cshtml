@@ -42,12 +42,14 @@
         window.openModal = () => {
             scrollPosition = window.pageYOffset;
             console.log(scrollPosition);
-            document.getElementById("imagePreviewModal").style.display = "block";
+            document.getElementById("imagePreviewModal").style.height = "100%";
+            document.getElementById("imagePreviewModal").style.opacity = 1;
             document.getElementsByTagName("BODY")[0].style.position = "fixed";
             document.getElementsByTagName("BODY")[0].style.top = - scrollPosition + "px";
         };
         window.closeModal = () => {
-            document.getElementById("imagePreviewModal").style.display = "none";
+            document.getElementById("imagePreviewModal").style.height = 0;
+            document.getElementById("imagePreviewModal").style.opacity = 0;
             document.getElementsByTagName("BODY")[0].style.position = "unset"
             document.getElementsByTagName("BODY")[0].style.top = null;
             window.scroll(0, scrollPosition);
