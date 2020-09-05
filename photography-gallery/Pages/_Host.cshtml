@@ -31,21 +31,30 @@
     <base href="~/" />
     <link href="css/site.css" rel="stylesheet" />
     <script>
-
         document.addEventListener('keyup', (e) => {
             if (e.keyCode === 27) {
                 document.getElementById('imagePreviewModalCloseBtn').click();
             }
         }, false);
 
+        var scrollPosition;
+
         window.openModal = () => {
+            scrollPosition = window.pageYOffset;
+            console.log(scrollPosition);
             document.getElementById("imagePreviewModal").style.display = "block";
-            document.getElementsByTagName("BODY")[0].style.overflow = "hidden"
+            document.getElementsByTagName("BODY")[0].style.position = "fixed";
+            document.getElementsByTagName("BODY")[0].style.top = - scrollPosition + "px";
         };
         window.closeModal = () => {
             document.getElementById("imagePreviewModal").style.display = "none";
-            document.getElementsByTagName("BODY")[0].style.overflow = "unset"
+            document.getElementsByTagName("BODY")[0].style.position = "unset"
+            document.getElementsByTagName("BODY")[0].style.top = null;
+            window.scroll(0, scrollPosition);
         };
+        window.scrollToTop = () => {
+            window.scroll(0, 0);
+        }
     </script>
 
 </head>

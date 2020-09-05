@@ -110,6 +110,11 @@
         selectedImage = null;
         JSRuntime.InvokeAsync<string>("closeModal");
     }
+    void ScrollToTop()
+    {
+        selectedImage = null;
+        JSRuntime.InvokeAsync<string>("scrollToTop");
+    }
 
     //Close modal on navigation event
     protected override void OnInitialized()
@@ -120,6 +125,7 @@
     void LocationChanged(object sender, LocationChangedEventArgs e)
     {
         CloseModal();
+        ScrollToTop();
     }
     void IDisposable.Dispose()
     {
