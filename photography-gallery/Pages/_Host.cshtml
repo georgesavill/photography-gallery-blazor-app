@@ -33,11 +33,11 @@
     <script>
         window.openModal = () => {
             document.getElementById("imagePreviewModal").style.display = "block";
-            document.getElementsByTagName("BODY")[0].style.position = "fixed"
+            document.getElementsByTagName("BODY")[0].style.overflow = "hidden"
         };
         window.closeModal = () => {
             document.getElementById("imagePreviewModal").style.display = "none";
-            document.getElementsByTagName("BODY")[0].style.position = "unset"
+            document.getElementsByTagName("BODY")[0].style.overflow = "unset"
         };
     </script>
 
