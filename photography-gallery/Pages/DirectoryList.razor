@@ -42,7 +42,7 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x"  src="@directory.SmallImagePath" width="400" height="@(400 * float.Parse(redisDatabase.HashGet(directory.DisplayName, "AspectRatio").ToString()))" @onclick="(e => OpenModal(directory))" />
+            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x" src="@directory.SmallImagePath" width="@redisDatabase.HashGet(directory.DisplayName, "Width")" height="@redisDatabase.HashGet(directory.DisplayName, "Height")" @onclick="(e => OpenModal(directory))" />
         }
     </div>
 </div>
