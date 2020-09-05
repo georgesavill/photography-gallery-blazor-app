@@ -53,7 +53,7 @@
             <div id="imagePreviewModalCloseBtn" @onclick="CloseModal" ><div class="model-close-btn">✕</div></div>
             @if (selectedImage != null)
             {
-                <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath" width="800" height="@(800 * float.Parse(redisDatabase.HashGet(selectedImage.DisplayName, "AspectRatio").ToString()))"/>
+                <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath" />
             }
         </div>
         @*<div class="modal-footer">
