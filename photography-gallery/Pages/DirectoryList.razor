@@ -47,10 +47,10 @@
     </div>
 </div>
 
-<div id="imagePreviewModal" class="modal">
-    <div class="modal-content">
+<div id="imagePreviewModal" class="modal" @onclick="CloseModal">
+    <div class="modal-content" @onclick:stopPropagation="true">
         <div class="modal-body">
-            <div id="imagePreviewModalCloseBtn" @onclick="CloseModal"><div class="model-close-btn">✕</div></div>
+            <div id="imagePreviewModalCloseBtn" @onclick="CloseModal" ><div class="model-close-btn">✕</div></div>
             @if (selectedImage != null)
             {
                 <img srcset="@selectedImage.MediumImagePath 1x, @selectedImage.LargeImagePath 2x" src="@selectedImage.MediumImagePath" />
