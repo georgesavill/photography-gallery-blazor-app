@@ -74,9 +74,9 @@ a {
 }
 
 /* Hide server connection messages */
-.components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected, components-reconnect-modal, blazor-error-ui {
+/*.components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected, components-reconnect-modal, blazor-error-ui {
     display: none !important;
-}
+}*/
 
 .list-container {
     padding:10px;
