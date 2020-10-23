@@ -9,7 +9,7 @@ To deploy with docker:
 docker build -t photo-gallery .
 ```
 ```
-docker run -d -p 8080:80 -p 8443:442 photo-gallery
+docker run -d -p 8080:80 -p 8443:443 photo-gallery
 ```
 Or use the following docker-compose.yml:
 ```
