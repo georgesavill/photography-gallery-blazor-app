@@ -24,6 +24,9 @@
     ConfigurationOptions redisOptions = new ConfigurationOptions
     {
         AbortOnConnectFail = false,
+        ConnectTimeout = 30000,
+        ConnectRetry = 3,
+        SyncTimeout = 30000,
         EndPoints = { "10.0.0.20:6379" } // TODO: Read this from a config file
     };
     ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisOptions);
