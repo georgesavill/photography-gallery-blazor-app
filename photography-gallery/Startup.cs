@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using photography_gallery.Models;
 using photography_gallery.Services;
+using StackExchange.Redis;
 
 namespace photography_gallery
 {
@@ -29,6 +31,17 @@ namespace photography_gallery
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddTransient<ImageListService>();
+
+            ConfigurationOptions redisOptions = new ConfigurationOptions
+            {
+                AbortOnConnectFail = false,
+                ConnectTimeout = 30000,
+                ConnectRetry = 3,
+                SyncTimeout = 30000,
+                EndPoints = { Configuration.GetSection("Config").GetSection("RedisLocation").Value }
+            };
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisOptions);
+            RedisDatabaseClass.RedisDatabase = redis.GetDatabase(Convert.ToInt32(Configuration.GetSection("Config").GetSection("RedisDatabaseRef").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
