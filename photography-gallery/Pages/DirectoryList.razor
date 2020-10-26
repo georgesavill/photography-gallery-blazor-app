@@ -24,7 +24,7 @@
     ConfigurationOptions redisOptions = new ConfigurationOptions
     {
         AbortOnConnectFail = false,
-        EndPoints = { "10.0.0.19:6379" } // TODO: Read this from a config file
+        EndPoints = { "10.0.0.20:6379" } // TODO: Read this from a config file
     };
     ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisOptions);
     IDatabase redisDatabase = redis.GetDatabase(9);
