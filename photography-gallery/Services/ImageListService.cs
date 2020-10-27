@@ -69,10 +69,16 @@ namespace photography_gallery.Services
             string displayName = entry.Split("/").Last();
 
             string imageDimensions = @RedisDatabaseClass.RedisDatabase.HashGet(displayName, "Dimensions").ToString();
-            string imageWidth = imageDimensions.Split(",")[0];
-            string imageHeight = imageDimensions.Split(",")[1];
-
-            return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, displayName, imageWidth, imageHeight, type);
+            if (imageDimensions != "")
+            {
+                Console.WriteLine("ID: " + imageDimensions);
+                return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, displayName, imageDimensions.Split(",")[0], imageDimensions.Split(",")[1], type);
+            } 
+            else
+            {
+                Console.WriteLine("NO ID: " + imageDimensions);
+                return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, displayName, "", "", type);
+            }
         }
     }
 }
