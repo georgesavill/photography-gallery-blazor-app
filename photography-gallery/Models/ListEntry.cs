@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Server.IIS.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,11 @@ namespace photography_gallery.Models
         private string mediumImagePath;
         private string largeImagePath;
         private string displayName;
+        private string imageWidth;
+        private string imageHeight;
         private string type;
 
-        public ListEntry(string fullPath, string relativePath, string routablePath, string smallImagePath, string mediumImagePath, string largeImagePath, string displayName, string type)
+        public ListEntry(string fullPath, string relativePath, string routablePath, string smallImagePath, string mediumImagePath, string largeImagePath, string displayName, string imageWidth, string imageHeight, string type)
         {
             this.fullPath = fullPath;
             this.relativePath = relativePath;
@@ -25,6 +28,8 @@ namespace photography_gallery.Models
             this.mediumImagePath = mediumImagePath.Replace(" ", "%20");
             this.largeImagePath = largeImagePath.Replace(" ", "%20");
             this.displayName = displayName;
+            this.imageWidth = imageWidth;
+            this.imageHeight = imageHeight;
             this.type = type;
         }
 
@@ -47,7 +52,7 @@ namespace photography_gallery.Models
         public string SmallImagePath
         {
             get { return smallImagePath; }
-            set { SmallImagePath = value; }
+            set { smallImagePath = value; }
         }
         public string MediumImagePath
         {
@@ -63,6 +68,16 @@ namespace photography_gallery.Models
         {
             get { return displayName; }
             set { displayName = value; }
+        }
+        public string ImageWidth
+        {
+            get { return imageWidth; }
+            set { imageWidth = value; }
+        }
+        public string ImageHeight
+        {
+            get { return imageHeight; }
+            set { imageHeight = value; }
         }
         public string Type
         {

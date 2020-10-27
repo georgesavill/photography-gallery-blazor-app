@@ -66,8 +66,13 @@ namespace photography_gallery.Services
             string smallImagePath = fileName + "_400." + fileExtension;
             string mediumPath = fileName + "_800." + fileExtension;
             string largePath = fileName + "_1600." + fileExtension;
+            string displayName = entry.Split("/").Last();
 
-            return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, entry.Split("/").Last(), type);
+            string imageDimensions = @RedisDatabaseClass.RedisDatabase.HashGet(displayName, "Dimensions").ToString();
+            string imageWidth = imageDimensions.Split(",")[0];
+            string imageHeight = imageDimensions.Split(",")[1];
+
+            return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, displayName, imageWidth, imageHeight, type);
         }
     }
 }
