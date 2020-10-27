@@ -76,7 +76,7 @@ namespace photography_gallery.Services
             } 
             else
             {
-                Console.WriteLine("NO ID: " + imageDimensions);
+                Console.WriteLine("NO ID: " + displayName);
                 return new ListEntry(entry, relativePath, routablePath, smallImagePath, mediumPath, largePath, displayName, "", "", type);
             }
         }
