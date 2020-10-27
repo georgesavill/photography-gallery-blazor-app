@@ -35,10 +35,12 @@
     <div class="list">
         @foreach (ListEntry directory in ListService.GetFileList("/" + System.Net.WebUtility.UrlDecode(RequestedDirectory)))
         {
-            string imageDimensions = @RedisDatabaseClass.RedisDatabase.HashGet(directory.DisplayName, "Dimensions").ToString();
-            string imageWidth = imageDimensions.Split(",")[0];
-            string imageHeight = imageDimensions.Split(",")[1];
-            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x" src="@directory.SmallImagePath" width="@imageWidth" height="@imageHeight" @onclick="(e => OpenModal(directory))" />
+            //string imageDimensions = @RedisDatabaseClass.RedisDatabase.HashGet(directory.DisplayName, "Dimensions").ToString();
+            //string imageWidth = imageDimensions.Split(",")[0];
+            //string imageHeight = imageDimensions.Split(",")[1];
+            @*<img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x" src="@directory.SmallImagePath" width="@imageWidth" height="@imageHeight" @onclick="(e => OpenModal(directory))" />*@
+            <img class="img-card" srcset="@directory.SmallImagePath 1x, @directory.MediumImagePath 2x" src="@directory.SmallImagePath" width="@RedisDatabaseClass.RedisDatabase.HashGet(directory.DisplayName, "Width")" height="@RedisDatabaseClass.RedisDatabase.HashGet(directory.DisplayName, "Height")" @onclick="(e => OpenModal(directory))" />
+            
         }
     </div>
 </div>
