@@ -1,7 +1,7 @@
 version: '3'
 services:
   photo-gallery:
-    image: georgesavill/photo-gallery:latest
+    image: georgesavill/photography-gallery:latest
     volumes:
       - /home/george/photography-gallery/photos:/app/wwwroot/images
       - /mnt/prod-server-storage/photos:/tmp/photography-gallery-input-images
