@@ -9,4 +9,6 @@ services:
       - /mnt/prod-server-storage/photos:/tmp/photography-gallery-input-images
     ports:
       - 8181:80
+    depends_on:
+      - photo-gallery-redis
     restart: always
