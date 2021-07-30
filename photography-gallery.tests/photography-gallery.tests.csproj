@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\photography-gallery\photography-gallery.csproj" />
+  </ItemGroup>
+
 </Project>
