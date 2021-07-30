@@ -13,6 +13,25 @@ namespace photography_gallery.tests
             ImageConversion = new ImageConversionService();
         }
 
+        [Fact] 
+        void ImagesAreDifferent_true_1()
+        {
+            Assert.True(ImageConversion.ImagesAreDifferent("./Data/original_image.jpg", "./Data/different_image.jpg"));
+        }
+
+        [Fact]
+        void ImagesAreDifferent_true_2()
+        {
+            Assert.True(ImageConversion.ImagesAreDifferent("./Data/original_image.jpg", "./Data/original_image_edited.jpg"));
+
+        }
+
+        [Fact]
+        void ImagesAreDifferent_false()
+        {
+            Assert.False(ImageConversion.ImagesAreDifferent("./Data/original_image.jpg", "./Data/original_image_identical.jpg"));
+        }
+
         [Fact]
         public void FixFNumber_true_1()
         {

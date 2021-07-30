@@ -69,7 +69,7 @@ namespace photography_gallery.Services
             });
         }
 
-        private bool ImagesAreDifferent(string imagePath, string potentialExistingImage)
+        public bool ImagesAreDifferent(string imagePath, string potentialExistingImage)
         {
             FileInfo inputImage = new FileInfo(imagePath);
             FileInfo existingImage = new FileInfo(potentialExistingImage);
