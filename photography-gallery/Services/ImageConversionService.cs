@@ -130,7 +130,7 @@ namespace photography_gallery.Services
             }
         }
 
-        private string FixFNumber(string input)
+        public string FixFNumber(string input)
         {
             string[] splitInput = input.Split("/");
             if (splitInput.Length == 1)
@@ -150,7 +150,7 @@ namespace photography_gallery.Services
             return string.Join(DirectorySeparator, splitImagePath);
         }
 
-        private float GetImageRatio(int width, int height)
+        public float GetImageRatio(int width, int height)
         {
             float w = width;
             float h = height;
