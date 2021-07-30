@@ -5,7 +5,7 @@ services:
   photo-gallery:
     image: georgesavill/photography-gallery:latest
     volumes:
-      - /home/george/photography-gallery/photos:/app/wwwroot/images
+#      - /home/george/photography-gallery/photos:/app/wwwroot/images
       - /mnt/prod-server-storage/photos:/tmp/photography-gallery-input-images
     ports:
       - 8181:80
