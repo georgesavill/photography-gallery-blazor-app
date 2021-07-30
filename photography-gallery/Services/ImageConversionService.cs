@@ -45,29 +45,31 @@ namespace photography_gallery.Services
                 string targetDirectory = OutputDirectory + GetRelativeImageDirectory(InputDirectory, imagePath);
                 string potentialExistingImage = OutputDirectory + imagePath.Split(InputDirectory)[1];
 
+                ExtractImageMetadata(imagePath, uploadedImageFileName, uploadedImageExtension);
+
                 if (File.Exists(potentialExistingImage))
                 {
-
                     if (ImagesAreDifferent(imagePath, potentialExistingImage))
                     {
                         foreach (int size in ImageSizes)
                         {
-                            ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory, uploadedImageExtension, RedisDatabase);
+                            ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory);
                         }
                         // And copy over original image
                         File.Copy(imagePath, targetDirectory + DirectorySeparator + uploadedImageFileName + "." + uploadedImageExtension, true);
-                    }
+                    } 
                 }
                 else
                 {
                     foreach (int size in ImageSizes)
                     {
                         Console.WriteLine(imagePath + " is a new image, resizing...");
-                        ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory, uploadedImageExtension, RedisDatabase);
+                        ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory);
                     }
                     // And copy over original image
                     File.Copy(imagePath, targetDirectory + DirectorySeparator + uploadedImageFileName + "." + uploadedImageExtension, true);
                 }
+
             });
         }
 
@@ -94,15 +96,13 @@ namespace photography_gallery.Services
 
         }
 
-        private void ResizeImage(string imagePath, int newWidth, string uploadedImageFileName, string uploadedImageDirectory, string uploadedImageExtension, IDatabase redisDatabase)
+        private void ExtractImageMetadata(string imagePath, string uploadedImageFileName, string uploadedImageExtension)
         {
-            Directory.CreateDirectory(uploadedImageDirectory);
-
             using (MagickImage image = new MagickImage(imagePath))
             {
                 IExifProfile metadata = image.GetExifProfile();
                 string redisReference = uploadedImageFileName + "." + uploadedImageExtension;
-                redisDatabase.HashSet(redisReference, new HashEntry[] {
+                RedisDatabase.HashSet(redisReference, new HashEntry[] {
                     new HashEntry("Model",metadata.GetValue(ExifTag.Model).ToString()),
                     new HashEntry("LensModel",metadata.GetValue(ExifTag.LensModel).ToString()),
                     new HashEntry("FNumber",FixFNumber(metadata.GetValue(ExifTag.FNumber).ToString())),
@@ -113,7 +113,15 @@ namespace photography_gallery.Services
                     new HashEntry("Dimensions",image.Width.ToString() + "," + image.Height.ToString()),
                     new HashEntry("AspectRatio",GetImageRatio(image.Width, image.Height))
                 });
+            }
+        }
 
+        private void ResizeImage(string imagePath, int newWidth, string uploadedImageFileName, string uploadedImageDirectory)
+            {
+            Directory.CreateDirectory(uploadedImageDirectory);
+
+            using (MagickImage image = new MagickImage(imagePath))
+            {
                 image.Resize(newWidth, Convert.ToInt32(newWidth * GetImageRatio(image.Width, image.Height)));
                 image.Strip();
                 int imageQuality;
