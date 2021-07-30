@@ -68,6 +68,14 @@ namespace photography_gallery
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            // Convert images
+            ImageConversionService imageConversionService = new ImageConversionService(
+                Configuration.GetSection("Config").GetSection("ImageInputDirectory").Value,
+                Configuration.GetSection("Config").GetSection("ImageOutputDirectory").Value,
+                RedisDatabaseClass.RedisDatabase);
+
+            imageConversionService.ProcessImages();
         }
     }
 }
