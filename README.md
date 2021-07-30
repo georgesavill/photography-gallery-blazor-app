@@ -18,8 +18,8 @@ services:
   photo-gallery:
     image: photo-gallery
     volumes:
-      - /home/[USERNAME]/converted-photos:/app/wwwroot/images
-      - /home/[USERNAME]/input-photos:/tmp/photography-gallery-input-images
+#      - [path to persisted converted photos]:/app/wwwroot/images
+      - [path to input photos]:/tmp/photography-gallery-input-images
     ports:
       - 80:80
     restart: always
