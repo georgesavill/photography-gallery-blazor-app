@@ -63,7 +63,6 @@ namespace photography_gallery.Services
                 {
                     foreach (int size in ImageSizes)
                     {
-                        Console.WriteLine(imagePath + " is a new image, resizing...");
                         ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory);
                     }
                     // And copy over original image
@@ -80,17 +79,14 @@ namespace photography_gallery.Services
 
             if (inputImage.Length != existingImage.Length)
             {
-                Console.WriteLine(imagePath + " exists in output directory, but the image size has changed, resizing...");
                 return true;
             }
             else if (!File.ReadAllBytes(inputImage.FullName).SequenceEqual(File.ReadAllBytes(existingImage.FullName)))
             {
-                Console.WriteLine(imagePath + " exists in output directory, but the image content has changed, resizing...");
                 return true;
             }
             else
             {
-                Console.WriteLine(imagePath + " exists in output directory, and is identical to the input image, skipping..."); ;
                 return false;
             }
 
@@ -118,6 +114,7 @@ namespace photography_gallery.Services
 
         private void ResizeImage(string imagePath, int newWidth, string uploadedImageFileName, string uploadedImageDirectory)
         {
+            Console.WriteLine("Resizing " + uploadedImageFileName + " to " + newWidth + " pixels wide");
             Directory.CreateDirectory(uploadedImageDirectory);
 
             using (MagickImage image = new MagickImage(imagePath))
