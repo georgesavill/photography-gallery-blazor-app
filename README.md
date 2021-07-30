@@ -20,7 +20,7 @@ services:
   photo-gallery:
     image: photo-gallery
     volumes:
-#      - [path to persisted converted photos]:/app/wwwroot/images
+      - [path to persisted converted photos]:/app/wwwroot/images
       - [path to input photos]:/tmp/photography-gallery-input-images
     ports:
       - 80:80
