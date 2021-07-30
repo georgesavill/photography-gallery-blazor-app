@@ -117,7 +117,7 @@ namespace photography_gallery.Services
         }
 
         private void ResizeImage(string imagePath, int newWidth, string uploadedImageFileName, string uploadedImageDirectory)
-            {
+        {
             Directory.CreateDirectory(uploadedImageDirectory);
 
             using (MagickImage image = new MagickImage(imagePath))
