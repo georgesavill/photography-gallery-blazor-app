@@ -54,6 +54,7 @@ namespace photography_gallery.Services
                         {
                             ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory, uploadedImageExtension, RedisDatabase);
                         }
+                        // And copy over original image
                         File.Copy(imagePath, targetDirectory + DirectorySeparator + uploadedImageFileName + "." + uploadedImageExtension, true);
                     }
                 }
@@ -64,6 +65,7 @@ namespace photography_gallery.Services
                         Console.WriteLine(imagePath + " is a new image, resizing...");
                         ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory, uploadedImageExtension, RedisDatabase);
                     }
+                    // And copy over original image
                     File.Copy(imagePath, targetDirectory + DirectorySeparator + uploadedImageFileName + "." + uploadedImageExtension, true);
                 }
             });
