@@ -15,6 +15,8 @@ Or use the following docker-compose.yml:
 ```
 version: '3'
 services:
+  photo-gallery-redis:
+    image: redis:latest
   photo-gallery:
     image: photo-gallery
     volumes:
@@ -22,6 +24,8 @@ services:
       - [path to input photos]:/tmp/photography-gallery-input-images
     ports:
       - 80:80
+    depends_on:
+      - photo-gallery-redis
     restart: always
 
 ```
