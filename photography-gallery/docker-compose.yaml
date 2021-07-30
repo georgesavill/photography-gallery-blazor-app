@@ -1,5 +1,7 @@
 version: '3'
 services:
+  photo-gallery-redis:
+    image: redis:latest
   photo-gallery:
     image: georgesavill/photography-gallery:latest
     volumes:
