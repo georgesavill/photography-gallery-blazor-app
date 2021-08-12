@@ -2,6 +2,7 @@ version: '3'
 services:
   photo-gallery-redis:
     image: redis:latest
+    restart: always
   photo-gallery:
     image: georgesavill/photography-gallery:latest
     volumes:
