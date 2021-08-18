@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y wget ca-certificates gnupg \
 
 # Enable the New Relic APM agent
 ENV CORECLR_ENABLE_PROFILING=1 \
-CORECLR_PROFILER=$coreclr_profiler \
+CORECLR_PROFILER={$coreclr_profiler} \
 CORECLR_NEWRELIC_HOME=/usr/local/newrelic-netcore20-agent \
 CORECLR_PROFILER_PATH=/usr/local/newrelic-netcore20-agent/libNewRelicProfiler.so \
 NEW_RELIC_LICENSE_KEY=$new_relic_key \
