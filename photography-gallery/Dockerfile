@@ -1,6 +1,5 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 ARG new_relic_license_key
-ARG new_relic_app_name
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 WORKDIR /app
@@ -34,7 +33,7 @@ CORECLR_PROFILER={36032161-FFC0-4B61-B559-F6C5D41BAE5A} \
 CORECLR_NEWRELIC_HOME=/usr/local/newrelic-netcore20-agent \
 CORECLR_PROFILER_PATH=/usr/local/newrelic-netcore20-agent/libNewRelicProfiler.so \
 NEW_RELIC_LICENSE_KEY=$new_relic_license_key \
-NEW_RELIC_APP_NAME=$new_relic_app_name
+NEW_RELIC_APP_NAME=photography-gallery
 
 WORKDIR /app
 COPY --from=publish /app/publish .
