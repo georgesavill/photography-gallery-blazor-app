@@ -53,6 +53,7 @@ namespace photography_gallery.Services
                     {
                         foreach (int size in ImageSizes)
                         {
+                            Console.WriteLine("Converting image " + imagePath + " to " + size + "px");
                             ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory);
                         }
                         // And copy over original image
@@ -63,6 +64,7 @@ namespace photography_gallery.Services
                 {
                     foreach (int size in ImageSizes)
                     {
+                        Console.WriteLine("Converting image " + imagePath + " to " + size + "px");
                         ResizeImage(imagePath, size, uploadedImageFileName, targetDirectory);
                     }
                     // And copy over original image
@@ -87,6 +89,7 @@ namespace photography_gallery.Services
             }
             else
             {
+                Console.WriteLine("Unchanged image found");
                 return false;
             }
 
