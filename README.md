@@ -2,7 +2,7 @@
 
 ASP.NET Core Blazor app for the display and download of photography images.
 
-Images are stored in wwwroot/images directory, and only .jpg files are supported. Use the [photography-gallery-image-resizer](https://github.com/georgesavill/photography-gallery-image-resizer) to generate thumbnail and preview images (required)
+Images are stored in wwwroot/images directory, and only .jpg files are supported. Images are automatically processed on application start.
 
 To deploy with docker:
 ```
