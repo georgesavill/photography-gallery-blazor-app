@@ -1,0 +1,14 @@
+version: '3'
+services:
+  photo-gallery-redis:
+    image: redis:latest
+  photo-gallery:
+    image: georgesavill/photography-gallery:development
+    volumes:
+      - /home/george/photography-gallery/photos:/app/wwwroot/images
+      - /mnt/dev-server-storage/photos:/tmp/photography-gallery-input-images
+    ports:
+      - 8180:80
+    depends_on:
+      - photo-gallery-redis
+    restart: always
