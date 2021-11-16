@@ -12,5 +12,5 @@ services:
     ports:
       - 8181:80
     depends_on:
-      - photo-gallery-redis-green
+      - photo-gallery-redis
     restart: always
