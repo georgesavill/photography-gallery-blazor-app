@@ -2,10 +2,10 @@ version: '3'
 services:
   photo-gallery-redis:
     image: redis:latest
-    name: photo-gallery-redis-blue
+    container_name: photo-gallery-redis-blue
   photo-gallery:
     image: georgesavill/photography-gallery:development-blue
-    name: photo-gallery-blue
+    container_name: photo-gallery-blue
     volumes:
       - /home/george/photography-gallery/photos:/app/wwwroot/images
       - /mnt/dev-server-storage/photos:/tmp/photography-gallery-input-images
