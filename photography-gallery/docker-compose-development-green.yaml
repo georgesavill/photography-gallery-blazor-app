@@ -1,9 +1,9 @@
 version: '3'
 services:
-  photo-gallery-redis:
+  photo-gallery-redis-green:
     image: redis:latest
     container_name: photo-gallery-redis-green
-  photo-gallery:
+  photo-gallery-green:
     image: georgesavill/photography-gallery:development-green
     container_name: photo-gallery-green
     volumes:
@@ -12,5 +12,5 @@ services:
     ports:
       - 8181:80
     depends_on:
-      - photo-gallery-redis
+      - photo-gallery-redis-green
     restart: always
