@@ -83,20 +83,8 @@
         Blazor.defaultReconnectionHandler._reconnectCallback = function (d) {
             document.location.reload();
         }
+        new MutationObserver(() => document.querySelector('.components-reconnect-modal') && location.reload())
+            .observe(document.body, { childList: true });
     </script>
-    <script>
-    // Wait until a 'reload' button appears
-    new MutationObserver((mutations, observer) => {
-        if (document.querySelector('#components-reconnect-modal')) {
-            async function attemptReload() {
-                await fetch('');
-                location.reload();
-            }
-            observer.disconnect();
-            attemptReload();
-            setInterval(attemptReload, 1000);
-        }
-    }).observe(document.body, { childList: true, subtree: true });
-</script>
 </body>
 </html>
