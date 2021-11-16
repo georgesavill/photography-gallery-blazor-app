@@ -83,6 +83,8 @@
         Blazor.defaultReconnectionHandler._reconnectCallback = function (d) {
             document.location.reload();
         }
+        new MutationObserver(() => document.querySelector('#components-reconnect-modal') && location.reload())
+            .observe(document.body, { childList: true });
     </script>
 </body>
 </html>
