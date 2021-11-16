@@ -2,13 +2,15 @@ version: '3'
 services:
   photo-gallery-redis:
     image: redis:latest
+    name: photo-gallery-redis-green
   photo-gallery:
     image: georgesavill/photography-gallery:development-green
+    name: photo-gallery-green
     volumes:
       - /home/george/photography-gallery/photos:/app/wwwroot/images
       - /mnt/dev-server-storage/photos:/tmp/photography-gallery-input-images
     ports:
       - 8181:80
     depends_on:
-      - photo-gallery-redis
+      - photo-gallery-redis-green
     restart: always
