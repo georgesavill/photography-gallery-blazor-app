@@ -31,6 +31,7 @@ namespace photography_gallery
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddTransient<ImageListService>();
+            services.AddHealthChecks();
 
             ConfigurationOptions redisOptions = new ConfigurationOptions
             {
@@ -67,6 +68,7 @@ namespace photography_gallery
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapHealthChecks("/health");
             });
 
             // Convert images
