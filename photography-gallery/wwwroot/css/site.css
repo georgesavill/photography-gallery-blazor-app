@@ -74,9 +74,8 @@ a {
     top: 0.5rem;
 }
 
- Hide server connection messages 
 .components-reconnect-show, .components-reconnect-failed, .components-reconnect-rejected, .components-reconnect-modal, #blazor-error-ui {
-    /*display: none !important;*/
+    display: none !important;
     color: #000;
 }
 
