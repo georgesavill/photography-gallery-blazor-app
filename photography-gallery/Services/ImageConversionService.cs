@@ -99,14 +99,14 @@ namespace photography_gallery.Services
         {
             using (MagickImage image = new MagickImage(imagePath))
             {
-                IExifProfile metadata = image.GetExifProfile();
+                // IExifProfile metadata = image.GetExifProfile();
                 string redisReference = uploadedImageFileName + "." + uploadedImageExtension;
                 RedisDatabase.HashSet(redisReference, new HashEntry[] {
-                    new HashEntry("Model",metadata.GetValue(ExifTag.Model).ToString()),
-                    new HashEntry("LensModel",metadata.GetValue(ExifTag.LensModel).ToString()),
-                    new HashEntry("FNumber",FixFNumber(metadata.GetValue(ExifTag.FNumber).ToString())),
-                    new HashEntry("FocalLength",metadata.GetValue(ExifTag.FocalLength).ToString()),
-                    new HashEntry("ExposureTime",metadata.GetValue(ExifTag.ExposureTime).ToString()),
+                    // new HashEntry("Model",metadata.GetValue(ExifTag.Model).ToString()),
+                    // new HashEntry("LensModel",metadata.GetValue(ExifTag.LensModel).ToString()),
+                    // new HashEntry("FNumber",FixFNumber(metadata.GetValue(ExifTag.FNumber).ToString())),
+                    // new HashEntry("FocalLength",metadata.GetValue(ExifTag.FocalLength).ToString()),
+                    // new HashEntry("ExposureTime",metadata.GetValue(ExifTag.ExposureTime).ToString()),
                     new HashEntry("Height",image.Height),
                     new HashEntry("Width",image.Width),
                     new HashEntry("Dimensions",image.Width.ToString() + "," + image.Height.ToString()),
