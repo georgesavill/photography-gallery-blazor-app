@@ -31,9 +31,7 @@ namespace photography_gallery.Services
 
         public void ProcessImages()
         {
-            string[] fileList = Directory.EnumerateFiles(InputDirectory, "*.*", SearchOption.AllDirectories)
-            .Where(s => s.EndsWith(".JPG") || s.EndsWith(".jpg")).ToArray();
-
+            string[] fileList = Directory.GetFiles(InputDirectory, "*.jpg", SearchOption.AllDirectories);
             if (fileList.Length == 0)
             {
                 Console.WriteLine("No .jpg files present in input directory (" + InputDirectory + ")");
