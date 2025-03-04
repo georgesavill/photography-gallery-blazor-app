@@ -59,7 +59,6 @@ namespace photography_gallery
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
