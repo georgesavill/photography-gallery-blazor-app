@@ -45,7 +45,7 @@ namespace photography_gallery.Services
         {
             List<ListEntry> returnedFileList = new List<ListEntry>();
             string rootDirectory = Path.Combine(WebHostEnvironment.WebRootPath, "images") + subDirectory;
-            string[] fileList = Directory.GetFiles(rootDirectory, "*.*", SearchOption.TopDirectoryOnly).Where(s => s.EndsWith(".JPG") || s.EndsWith(".jpg")).ToArray();;
+            string[] fileList = Directory.GetFiles(rootDirectory, "*.jpg", SearchOption.TopDirectoryOnly);
             Array.Sort(fileList);
             foreach (string entry in fileList)
             {
