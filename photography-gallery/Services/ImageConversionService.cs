@@ -89,7 +89,7 @@ namespace photography_gallery.Services
             }
             else
             {
-                Console.WriteLine("Unchanged image found");
+                Console.WriteLine("Unchanged image found: " + imagePath);
                 return false;
             }
 
